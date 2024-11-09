@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'temurin'  # Cambié aquí a 'temurin'
 
       - name: Build Subscription-Service
         working-directory: ./Subscription-Service
@@ -48,6 +49,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'temurin'
 
       - name: Build Notification-Service
         working-directory: ./Notification-Service
@@ -66,4 +68,3 @@ jobs:
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           USERNAME: ${{ secrets.USERNAME }}
         run: ./gradlew run
-
