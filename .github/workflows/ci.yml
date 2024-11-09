@@ -1,6 +1,5 @@
 name: CI/CD Workflow for Microservices
 
-# Evento que dispara el workflow
 on:
   push:
     branches:
@@ -9,23 +8,19 @@ on:
     branches:
       - main
 
-# Configuración de jobs para cada microservicio
 jobs:
   build-service1:
     runs-on: ubuntu-latest
 
     steps:
-      # Clona el código del repositorio
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Configura la versión de Java (ajusta según tu versión de Java)
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
           java-version: '17'
 
-      # Compila y prueba el primer microservicio
       - name: Build Service 1
         working-directory: ./service1
         run: ./gradlew build
@@ -38,17 +33,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Clona el código del repositorio
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Configura la versión de Java
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
           java-version: '17'
 
-      # Compila y prueba el segundo microservicio
       - name: Build Service 2
         working-directory: ./service2
         run: ./gradlew build
