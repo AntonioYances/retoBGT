@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build-service1:
+  build-Subscription-Service:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,15 +21,16 @@ jobs:
         with:
           java-version: '17'
 
-      - name: Build Service 1
-        working-directory: ./service1
+      - name: Build Subscription-Service
+        working-directory: ./Subscription-Service
         run: ./gradlew build
 
-      - name: Run Service 1 Tests
-        working-directory: ./service1
+      - name: Run Subscription-Service Tests
+        working-directory: ./Subscription-Service
         run: ./gradlew test
 
-  build-service2:
+
+  build-Notification-Service:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,10 +42,22 @@ jobs:
         with:
           java-version: '17'
 
-      - name: Build Service 2
-        working-directory: ./service2
+      - name: Build Notification-Service
+        working-directory: ./Notification-Service
         run: ./gradlew build
 
       - name: Run Service 2 Tests
-        working-directory: ./service2
+        working-directory: ./Notification-Service
         run: ./gradlew test
+
+      - name: Run Subscription-Service with Secrets
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTHTOKEN: ${{ secrets.TWILIO_AUTHTOKEN }}
+          TWILIO_PHONENUMBER: ${{ TWILIO_PHONENUMBER }}
+          MAIL_PASSWORD: ${{ MAIL_PASSWORD }}
+          USERNAME: ${{ USERNAME }}
+
+
+        working-directory: ./Subscription-Service
+        run: ./gradlew run
