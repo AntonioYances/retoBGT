@@ -28,6 +28,11 @@ jobs:
       - name: Run Subscription-Service Tests
         working-directory: ./Subscription-Service
         run: ./gradlew test
+      - name: Run Subscription-Service with Secrets
+        env:
+          URL: ${{ secrets.URL_DB }}
+          USERNAME: ${{ secrets.USER_NAME_DB }}
+          PASSWORD: ${{ PASSWORD_DB }}
 
 
   build-Notification-Service:
@@ -50,7 +55,7 @@ jobs:
         working-directory: ./Notification-Service
         run: ./gradlew test
 
-      - name: Run Subscription-Service with Secrets
+      - name: Run Notification-Service with Secrets
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTHTOKEN: ${{ secrets.TWILIO_AUTHTOKEN }}
