@@ -28,12 +28,14 @@ jobs:
       - name: Run Subscription-Service Tests
         working-directory: ./Subscription-Service
         run: ./gradlew test
+
       - name: Run Subscription-Service with Secrets
+        working-directory: ./Subscription-Service
         env:
           URL: ${{ secrets.URL_DB }}
           USERNAME: ${{ secrets.USER_NAME_DB }}
-          PASSWORD: ${{ PASSWORD_DB }}
-
+          PASSWORD: ${{ secrets.PASSWORD_DB }}
+        run: ./gradlew run
 
   build-Notification-Service:
     runs-on: ubuntu-latest
@@ -51,18 +53,17 @@ jobs:
         working-directory: ./Notification-Service
         run: ./gradlew build
 
-      - name: Run Service 2 Tests
+      - name: Run Notification-Service Tests
         working-directory: ./Notification-Service
         run: ./gradlew test
 
       - name: Run Notification-Service with Secrets
+        working-directory: ./Notification-Service
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTHTOKEN: ${{ secrets.TWILIO_AUTHTOKEN }}
-          TWILIO_PHONENUMBER: ${{ TWILIO_PHONENUMBER }}
-          MAIL_PASSWORD: ${{ MAIL_PASSWORD }}
-          USERNAME: ${{ USERNAME }}
-
-
-        working-directory: ./Subscription-Service
+          TWILIO_PHONENUMBER: ${{ secrets.TWILIO_PHONENUMBER }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          USERNAME: ${{ secrets.USERNAME }}
         run: ./gradlew run
+
