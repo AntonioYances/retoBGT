@@ -20,7 +20,17 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'temurin'  # Cambié aquí a 'temurin'
+          distribution: 'temurin'
+
+      - name: Install Gradle
+        run: |
+          wget https://services.gradle.org/distributions/gradle-7.5-bin.zip
+          unzip gradle-7.5-bin.zip
+          sudo mv gradle-7.5 /opt/gradle
+          sudo ln -s /opt/gradle/bin/gradle /usr/local/bin/gradle
+
+      - name: Grant execute permissions
+        run: chmod +x ./gradlew
 
       - name: Build Subscription-Service
         working-directory: ./Subscription-Service
@@ -50,6 +60,16 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Install Gradle
+        run: |
+          wget https://services.gradle.org/distributions/gradle-7.5-bin.zip
+          unzip gradle-7.5-bin.zip
+          sudo mv gradle-7.5 /opt/gradle
+          sudo ln -s /opt/gradle/bin/gradle /usr/local/bin/gradle
+
+      - name: Grant execute permissions
+        run: chmod +x ./gradlew
 
       - name: Build Notification-Service
         working-directory: ./Notification-Service
