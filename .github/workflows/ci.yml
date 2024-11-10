@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
           java-package: jdk
           architecture: x64
-          distribution: 'adoptopenjdk'
+          distribution: 'temurin'
 
       - name: Build Subscription-Service with Maven
         working-directory: ./Subscription-Service
@@ -53,7 +53,7 @@ jobs:
           java-version: '17'
           java-package: jdk
           architecture: x64
-          distribution: 'adoptopenjdk'
+          distribution: 'temurin'
 
       - name: Build Notification-Service with Maven
         working-directory: ./Notification-Service
