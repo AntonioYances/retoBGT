@@ -26,7 +26,7 @@ jobs:
 
       - name: Build and Start Containers with Docker Compose
         run: |
-          docker-compose -f ./Subscription-Service/Subscription-Service/docker-compose.yml up -d
+          docker-compose -f ./Subscription-Service/docker-compose.yml up -d
           docker-compose ps
 
       - name: Set up Java
