@@ -19,7 +19,7 @@ services:
       dockerfile: Subscription-Service/Dockerfile
     container_name: spring_boot_app
     ports:
-        - "8080:808"
+      - "8080:808"
     depends_on:
       - db
     environment:
