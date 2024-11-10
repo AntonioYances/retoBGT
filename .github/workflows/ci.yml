@@ -16,6 +16,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get update
+          sudo aot-get install -y docker-compose
+
+      - name: Build and Start Containers with Docker Compose
+        run: |
+          docker-compose -f docker-compose.yml up -d
+          docker-compose ps
+
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
