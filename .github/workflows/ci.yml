@@ -19,6 +19,9 @@ jobs:
       - name: List files in Subscription-Service directory
         run: ls -al ./Subscription-Service
 
+      - name: Git checkout
+        uses: actions/checkout@v4
+
       - name: set up Docker
         uses: docker/setup-buildx-action@v2
 
