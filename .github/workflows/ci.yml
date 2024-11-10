@@ -22,7 +22,7 @@ jobs:
       - name: Set up Docker Compose
         run: |
           sudo apt-get update
-          sudo aot-get install -y docker-compose
+          sudo apt-get install -y docker-compose
 
       - name: Build and Start Containers with Docker Compose
         run: |
