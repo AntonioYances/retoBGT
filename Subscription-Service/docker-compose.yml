@@ -15,8 +15,8 @@ services:
 
   app:
     build:
-      context: ./Subscription-Service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Subscription-Service/Dockerfile
     container_name: spring_boot_app
     ports:
         - "8080:808"
