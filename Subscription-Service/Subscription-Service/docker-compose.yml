@@ -15,7 +15,7 @@ services:
 
   app:
     build:
-      context: .
+      context: ./Subscription-Service/Subscription-Service
     container_name: spring_boot_app
     ports:
         - "8080:808"
