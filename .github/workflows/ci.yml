@@ -20,6 +20,9 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          java-package: jdk
+          architecture: x64
+          distribucion: 'adoptopenjdk'
 
       - name: Build Subscription-Service with Maven
         working-directory: ./Subscription-Service
@@ -48,6 +51,9 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          java-package: jdk
+          architecture: x64
+          distribucion: 'adoptopenjdk'
 
       - name: Build Notification-Service with Maven
         working-directory: ./Notification-Service
