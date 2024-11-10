@@ -29,7 +29,7 @@ jobs:
         run: mvn clean install
 
       - name: Run Subscription-Service Tests
-        working-directory: : ./Subscription-Service/Subscription-Service
+        working-directory: ./Subscription-Service/Subscription-Service
         run: mvn test
 
       - name: Run Subscription-Service with Secrets
@@ -37,7 +37,7 @@ jobs:
           URL: ${{ secrets.URL_DB }}
           USERNAME: ${{ secrets.USER_NAME_DB }}
           PASSWORD: ${{ secrets.PASSWORD_DB }}
-        working-directory: : ./Subscription-Service/Subscription-Service
+        working-directory: ./Subscription-Service/Subscription-Service
         run: mvn exec:java
 
   build-Notification-Service:
