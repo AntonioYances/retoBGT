@@ -20,33 +20,22 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'temurin'
 
-      - name: Install Gradle
-        run: |
-          wget https://services.gradle.org/distributions/gradle-7.5-bin.zip
-          unzip gradle-7.5-bin.zip
-          sudo mv gradle-7.5 /opt/gradle
-          sudo ln -s /opt/gradle/bin/gradle /usr/local/bin/gradle
-
-      - name: Grant execute permissions
-        run: chmod +x ./gradlew
-
-      - name: Build Subscription-Service
+      - name: Build Subscription-Service with Maven
         working-directory: ./Subscription-Service
-        run: ./gradlew build
+        run: mvn clean install
 
       - name: Run Subscription-Service Tests
         working-directory: ./Subscription-Service
-        run: ./gradlew test
+        run: mvn test
 
       - name: Run Subscription-Service with Secrets
-        working-directory: ./Subscription-Service
         env:
           URL: ${{ secrets.URL_DB }}
           USERNAME: ${{ secrets.USER_NAME_DB }}
           PASSWORD: ${{ secrets.PASSWORD_DB }}
-        run: ./gradlew run
+        working-directory: ./Subscription-Service
+        run: mvn exec:java
 
   build-Notification-Service:
     runs-on: ubuntu-latest
@@ -59,32 +48,21 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'temurin'
 
-      - name: Install Gradle
-        run: |
-          wget https://services.gradle.org/distributions/gradle-7.5-bin.zip
-          unzip gradle-7.5-bin.zip
-          sudo mv gradle-7.5 /opt/gradle
-          sudo ln -s /opt/gradle/bin/gradle /usr/local/bin/gradle
-
-      - name: Grant execute permissions
-        run: chmod +x ./gradlew
-
-      - name: Build Notification-Service
+      - name: Build Notification-Service with Maven
         working-directory: ./Notification-Service
-        run: ./gradlew build
+        run: mvn clean install
 
       - name: Run Notification-Service Tests
         working-directory: ./Notification-Service
-        run: ./gradlew test
+        run: mvn test
 
       - name: Run Notification-Service with Secrets
-        working-directory: ./Notification-Service
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTHTOKEN: ${{ secrets.TWILIO_AUTHTOKEN }}
           TWILIO_PHONENUMBER: ${{ secrets.TWILIO_PHONENUMBER }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           USERNAME: ${{ secrets.USERNAME }}
-        run: ./gradlew run
+        working-directory: ./Notification-Service
+        run: mvn exec:java
