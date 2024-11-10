@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
           java-package: jdk
           architecture: x64
-          distribucion: 'adoptopenjdk'
+          distribution: 'adoptopenjdk'
 
       - name: Build Subscription-Service with Maven
         working-directory: ./Subscription-Service
@@ -53,7 +53,7 @@ jobs:
           java-version: '17'
           java-package: jdk
           architecture: x64
-          distribucion: 'adoptopenjdk'
+          distribution: 'adoptopenjdk'
 
       - name: Build Notification-Service with Maven
         working-directory: ./Notification-Service
